@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="Normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title></title>
+
+</head>
+<body>
+	<section>
+		<div class="card mr-5 ml-3">
+			<div class="card-body">
+				<div class="container text-center">
+
+					<div class="container text-center">
+
+						<!-- <img style="height: 200px; width: 200px;"
+						class="my_profile_picture" th:src="@{'/image/'+${user.imageurl}}"
+						alt="profile photo" /> -->
+						<img style="height: 200px; width: 200px;"
+							class="my_profile_picture"
+							th:src="@{${user.imageurl} != null ? '/image/' + ${user.imageurl} : '/image/default.png'}"
+							alt="profile photo" />
+
+
+					</div>
+
+<div class="table-responsive">
+					<div class="container mt-4">
+						<div class="card">
+							<div class="card-header">
+								<h4>Profile Page</h4>
+							</div>
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-6">
+										<strong>User-ID:</strong>
+									</div>
+									<div class="col-md-6">
+										<span th:text="${user.id}"></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<strong>Name:</strong>
+									</div>
+									<div class="col-md-6">
+										<span th:text="${user.name}"></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<strong>Role</strong>
+									</div>
+									<div class="col-md-6">
+										<span th:text="${user.role}"></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<strong>Email Id</strong>
+									</div>
+									<div class="col-md-6">
+										<span th:text="${user.email}"></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<strong>Account Active</strong>
+									</div>
+									<div class="col-md-6">
+										<span th:text="${user.enable}"></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<strong>About</strong>
+									</div>
+									<div class="col-md-6">
+										<span th:utext="${user.about}"></span>
+									</div>
+								</div>
+							</div>
+
+							<!-- <div class="container mt-4" >
+								<a href="#" th:onclick="|deleteContact(${contact.cid})|" class="btn btn-danger btn-sm">Delete</a>
+								<a th:href="@{'/user/update-contact/'+${contact.cid}}" class="btn btn-primary btn-sm">Update</a>
+							</div>  -->
+
+						</div>
+					</div>
+</div>
+				</div>
+			</div>
+
+		</div>
+
+<script type="text/javascript">
+         $(document).ready(()=>{
+            $(".item").removeClass("active");
+            $("#profile-link").addClass("active");
+         });
+        </script>
+
+	</section>
+</body>
+</html>

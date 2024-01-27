@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="Normal/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <section>
+        <h1>This is Dashboard page</h1>
+        
+        <div class="job-details-section">
+            <h2>Job Title</h2>
+            <div class="job-details">
+                <div class="job-description">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquet dui vitae metus fringilla,
+                        in gravida nunc blandit. Suspendisse potenti. Sed vel bibendum tortor.
+                    </p>
+                    <!-- Add more content as needed -->
+                </div>
+            </div>
+            <div class="contact-details">
+                <p>Contact: contact@example.com</p>
+            </div>
+            <div class="like-dislike-container">
+                <button class="like-btn" onclick="toggleLike()">Like</button>
+                <span class="likes-count">0</span>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+         $(document).ready(()=>{
+            $(".item").removeClass("active");
+            $("#home-link").addClass("active");
+         });
+        </script>
+    </section>
+</body>
+</html>

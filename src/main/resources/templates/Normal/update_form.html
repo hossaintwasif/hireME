@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="Normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title></title>
+</head>
+<body>
+	<section>
+		<div class="card mr-5 ml-5 th:if="${contact}"">
+			<div class="card-body">
+				<h1 class="text-center">Update Job Profile</h1>
+				<div class="container-fluid mt-1">
+					<div class="row">
+						<div class="col-md-10 offset-md-1">
+							<form th:object="${contact}" enctype="multipart/form-data"
+								method="POST" th:action="@{/user/process-update}" class="mt-2">
+                             
+                             <!-- Hidden form field -->
+                             <input type="hidden" th:value="${contact.cid}" name=cid />
+
+								<!-- First Name -->
+								<div class="input-group">
+									<div class="input-group-prepend" style="width: 50px;">
+										<!-- Adjust the width as needed -->
+										<div class="input-group-text">
+											<i class="fas fa-user-alt"></i>
+										</div>
+									</div>
+									<input th:value="${contact.name}" required type="text" id="firstname" name="name"
+										placeholder="Enter first name" class="form-control" />
+								</div>
+
+
+								<!-- Second Name -->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend" style="width: 50px;">
+										<!-- Adjust the width as needed -->
+										<div class="input-group-text">
+											<i class="fa fa-plus"></i>
+										</div>
+									</div>
+									<input th:value="${contact.secondname}" required type="text" id="secondname" name="secondname"
+										placeholder="Enter last name" class="form-control" />
+								</div>
+
+
+								<!-- Phone  -->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend" style="width: 50px;">
+										<!-- Adjust the width as needed -->
+										<div class="input-group-text">
+											<i class="fa fa-phone"></i>
+										</div>
+									</div>
+									<input th:value="${contact.phone}" required type="number" id="phone" name="phone"
+										placeholder="Enter phone number" class="form-control" />
+								</div>
+
+
+								<!-- Email  -->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend" style="width: 50px;">
+										<!-- Adjust the width as needed -->
+										<div class="input-group-text">@</div>
+									</div>
+									<input th:value="${contact.email}" required type="email" id="email" name="email"
+										placeholder="Enter email address" class="form-control" />
+								</div>
+
+
+								<!-- Work Space  -->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend" style="width: 50px;">
+										<!-- Adjust the width as needed -->
+										<div class="input-group-text">
+											<i class="fa fa-briefcase"></i>
+										</div>
+									</div>
+									<input th:value="${contact.work}" required type="text" id="work" name="work"
+										placeholder="Enter profession" class="form-control" />
+								</div>
+
+
+								<!-- Contact description -->
+								<div class="form-group mt-3">
+									<textarea th:utext="${contact.description}" id="mytextarea" name="description"
+										class="form-control" cols="10" rows="2"
+										placeholder="Enter description here"></textarea>
+								</div>
+
+
+								<!-- Contact Image -->
+								<div class="container text-center">
+								  <img style="width: 250px; height: 250px;" class="img-fluid my_profile_picture" src="" th:src="@{'/image/'+${contact.image}}" alt="" />
+								</div>
+								
+								<p class="text-secondary">Upload Company Profile Pic</p>
+								<div class="custom-file">
+									<input type="file" name="imageFile" accept="image/*" />
+
+								</div>
+
+
+
+
+								<!-- Submit button -->
+								<div class="container text-center">
+									<button type="submit" class="btn btn-outline-primary">Save
+										Contact</button>
+								</div>
+
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script
+			src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js"
+			referrerpolicy="origin">
+		</script>
+			
+		 <script>
+            tinymce.init({
+                selector: '#mytextarea',
+                setup: function (editor) {
+                    editor.on('change', function () {
+                        // Get the content from the TinyMCE editor
+                        let content = editor.getContent();
+
+                        // Remove <div> and <p> tags
+                        content = content.replace(/<\/?div[^>]*>/g, '');
+                        content = content.replace(/<\/?p[^>]*>/g, '');
+
+                        // Set the modified content back to the TinyMCE editor
+                        editor.setContent(content);
+                    });
+                }
+            });
+        </script>
+        
+        <div class="container">
+			  <h1 class="text-center p-3 bg-danger text-white" th:unless="${contact}">OOPS!!!...You don't have permission to view this contact</h1>
+			</div>
+
+	</section>
+</body>
+</html>

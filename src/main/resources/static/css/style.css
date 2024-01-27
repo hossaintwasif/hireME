@@ -1,0 +1,263 @@
+body {
+    background: #e2e2e2 !important;
+}
+
+.bg-primary {
+    background: #009688 !important;
+}
+
+.banner {
+    width: 100%;
+    height: 93vh;
+    background: linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .8)), url(../image/alia2.jpg);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.banner h1 {
+    font-size: 2.5em;
+}
+
+.my-card {
+    padding: 20px;
+    background: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#login .container #login-row #login-column #login-box {
+    margin-top: 120px;
+    max-width: 600px;
+    height: 420px;
+    border: 1px solid #9C9C9C;
+    background: linear-gradient(45deg, #FF6B6B, #6B6BFF, #00BFFF, #00FA9A);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+#login .container #login-row #login-column #login-box #login-form {
+    padding: 20px;
+}
+
+#login .container #login-row #login-column #login-box #login-form label {
+    font-weight: bold;
+    color: black !important; /* Set text color to black with !important */
+}
+
+#login .container #login-row #login-column #login-box #login-form input[type="text"],
+#login .container #login-row #login-column #login-box #login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#login .container #login-row #login-column #login-box #login-form input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+#login-form, #login-form .btn-info {
+    color: black !important;
+}
+
+.register-link {
+    color: black !important;
+}
+
+#register-link:hover, #login-form .btn-info:hover {
+    color: #fff;
+}
+
+
+.alert {
+    margin-bottom: 15px;
+}
+
+.btn-info {
+    background-color: #009688;
+    border: 1px solid #009688;
+    color: black !important; /* Set text color to black with !important */
+}
+
+.btn-info:hover {
+    background-color: #00796b;
+    border: 1px solid #00796b;
+    color: #fff;
+}
+
+/* Integrated styles for job details section */
+
+.job-details-section {
+    width: 1300px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.job-details {
+    height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.contact-details {
+    margin-bottom: 10px;
+}
+
+.like-dislike-container {
+    display: flex;
+    align-items: center;
+}
+
+.like-btn {
+    padding: 5px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.likes-count {
+    font-weight: bold;
+}
+
+/* Rest of your existing styles for sidebar and content */
+
+/*SideBar (Normal/Dashbord) */
+
+@media only screen and (max-width:600px){
+    .sidebar{
+        display:none;
+        width: 80% !important;
+        background: white;
+        height: 100%;
+        position: fixed;
+        padding-top: 20px;
+    }
+
+    .content{
+        margin-left: 0% !important;
+    }
+}
+
+.sidebar{
+    width: 18%;
+    background: white;
+    height: 100%;
+    position: fixed;
+    padding-top: 45px;
+    z-index: 99999999999999999999999999999;
+}
+
+.sidebar a{
+    display: block;
+    width: 100%;
+    padding: 10px 25px;
+    text-decoration: none;
+    color: gray;
+}
+
+.sidebar a:hover{
+    background: #e2e2e2;
+}
+
+.sidebar .divider{
+    height: .5px;
+    width: 100%;
+    background: #e2e2e2;
+    margin-top: 10px;
+}
+
+.content{
+    margin-left: 20%;
+}
+
+.active{
+	background: #009688 !important;
+	color: white!important
+}
+
+.item i {
+    margin-right: 8px; /* Adjust the value as needed for the desired spacing */
+}
+
+/* Styles for the cross button */
+.sidebar .crossBtn {
+    position: absolute;
+    top: 0;
+    right: 35px;
+    font-size: 36px;
+    cursor: pointer;
+}
+
+.my_profile_picture{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius:50%
+}
+
+
+/* search functionality */
+
+/* Add new styles for the search container */
+.search-container {
+    position: relative;
+    width: 300px; /* Adjust the width as needed */
+    float: right; /* Shift to the right */
+}
+
+/* Add new styles for the search input */
+.search-input {
+    width: 100%; /* Make the input fill the container */
+    padding-right: 30px; /* Reserve space for the search icon */
+}
+
+/* Add new styles for the search icon */
+.search-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Adjust the right spacing as needed */
+    transform: translateY(-50%);
+    width: 20px; /* Adjust the width of the icon */
+    height: 20px; /* Adjust the height of the icon */
+    background: url('search-icon.png') no-repeat center center; /* Replace 'search-icon.png' with your actual image file */
+    background-size: cover;
+    cursor: pointer;
+}
+
+/* search functionality  */
+.search-container{
+	position: relative;
+}
+.search-result{
+	position: absolute;
+	background: white;
+	width : 100%;
+	padding: 10px;
+	border: 1px solid gray;
+	display: none;
+}
+

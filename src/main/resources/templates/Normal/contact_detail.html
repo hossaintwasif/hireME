@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="Normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>Dashbord</title>
+</head>
+<body>
+	<section>
+		<div class="card mr-5 ml-3" th:if="${contact}">
+			<div class="card-body" >
+				<div class="container text-center">
+					<img src="" style="height: 200px; width: 200px;"
+						class="my_profile_picture" th:src="@{'/image/'+${contact.image}}"
+						alt="profile photo" />
+					<h3 class="mt-4">
+						<span th:text="${contact.name}"></span> (<span
+							th:text="${contact.secondname}"></span>)
+					</h3>
+
+
+					<div class="container mt-4">
+						<div class="card">
+							<div class="card-header">
+								<h4>Job Information</h4>
+							</div>
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-6">
+										<strong>ID:</strong>
+									</div>
+									<div class="col-md-6">
+										<span th:text="${contact.cid}"></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<strong>Name:</strong>
+									</div>
+									<div class="col-md-6">
+										<span th:text="${contact.secondname}"></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<strong>Phone.no</strong>
+									</div>
+									<div class="col-md-6">
+										<span th:text="${contact.phone}"></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<strong>Email Id</strong>
+									</div>
+									<div class="col-md-6">
+										<span th:text="${contact.email}"></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<strong>Work:</strong>
+									</div>
+									<div class="col-md-6">
+										<span th:text="${contact.work}"></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<strong>Description:</strong>
+									</div>
+									<div class="col-md-6">
+										<span th:utext="${contact.description}"></span>
+									</div>
+								</div>
+							</div>
+							<div class="container mt-4" >
+								<a href="#" th:onclick="|deleteContact(${contact.cid})|" class="btn btn-danger btn-sm">Delete</a>
+								<a th:href="@{'/user/update-contact/'+${contact.cid}}" class="btn btn-primary btn-sm">Update</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			
+		</div>
+		<div class="container">
+			  <h1 class="text-center p-3 bg-danger text-white" th:unless="${contact}">OOPS!!!...You don't have permission to view this contact</h1>
+			</div>
+			
+		
+        
+	</section>
+</body>
+</html>
