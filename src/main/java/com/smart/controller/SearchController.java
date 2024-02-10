@@ -28,7 +28,7 @@ public class SearchController {
 	public ResponseEntity<?> search(@PathVariable("query") String query,Principal principal){
 		System.out.println(query);
 		User user=this.userRepository.getUserByUserName(principal.getName());
-		List<Contact> contacts = this.contactRepository.findByNameContainingAndUser(query, user);
+		List<Contact> contacts = this.contactRepository.findBycompanyContainingAndUser(query, user);
 		return ResponseEntity.ok(contacts);
 		
 	}

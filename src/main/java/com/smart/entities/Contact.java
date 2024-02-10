@@ -18,18 +18,17 @@ import jakarta.validation.constraints.NotBlank;
 
 
 @Entity
-@Table(name = "CONTACT")
+@Table(name = "Job_Post_Details")
 public class Contact {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int cid;
-	private String name;
-	private String secondname;
-	private String work;
-	@Column(unique = true)
-	private String email;
-	private String phone;
+	private String company;
+	private String position;
+	private String location;
+	private String experience;
+	private String link;
 	 
 	private String  image;
 	
@@ -45,6 +44,7 @@ public class Contact {
 	private User user;
 	
 	
+
 	public MultipartFile getImageFile() {
 		return imageFile;
 	}
@@ -71,52 +71,57 @@ public class Contact {
 	public void setCid(int cid) {
 		this.cid = cid;
 	}
-	public String getName() {
-		return name;
+	
+	public String getCompany() {
+		return company;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getSecondname() {
-		return secondname;
-	}
-	public void setSecondname(String secondname) {
-		this.secondname = secondname;
-	}
-	public String getWork() {
-		return work;
-	}
-	public void setWork(String work) {
-		this.work = work;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setCompany(String company) {
+		this.company = company;
 	}
 	
+	public String getPosition() {
+		return position;
+	}
+	public void setPosition(String position) {
+		this.position = position;
+	}
+	
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	
+	public String getExperience() {
+		return experience;
+	}
+	public void setExperience(String experience) {
+		this.experience = experience;
+	}
+	
+	
+	public String getLink() {
+		return link;
+	}
+	public void setLink(String link) {
+		this.link = link;
+	}
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Contact(int cid, String name, String secondname, String work, String email, String phone, String  image,
+	public Contact(int cid, String company, String position, String location, String experience, String link, String  image,
 			String description) {
 		super();
 		this.cid = cid;
-		this.name = name;
-		this.secondname = secondname;
-		this.work = work;
-		this.email = email;
-		this.phone = phone;
+		this.company = company;
+		this.position = position;
+		this.location = location;
+		this.experience = experience;
+		this.link = link;
 		this.image = image;
 		this.description = description;
 	}
@@ -126,8 +131,9 @@ public class Contact {
 	}
 	@Override
 	public String toString() {
-		return "Contact [cid=" + cid + ", name=" + name + ", secondname=" + secondname + ", work=" + work + ", email="
-				+ email + ", phone=" + phone + ", image=" + image + ", description=" + description + "]";
+		return "Contact [cid=" + cid + ", company=" + company + ", position=" + position + ", location=" + location
+				+ ", experience=" + experience + ", link=" + link + ", image=" + image + ", imageFile=" + imageFile
+				+ ", description=" + description + ", user=" + user + "]";
 	}
 	
 	

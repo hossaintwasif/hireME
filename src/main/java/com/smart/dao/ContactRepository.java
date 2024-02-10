@@ -20,5 +20,10 @@ public interface ContactRepository extends JpaRepository<Contact, Integer> {
 	public Page<Contact> findContactsByUserId(@Param("UserId") int UserId, Pageable pg);
 
 	//Search functionality
-	public List<Contact> findByNameContainingAndUser(String name,User user);
+	public List<Contact> findBycompanyContainingAndUser(String company, User user);
+	
+	@Query("FROM Contact")
+	public Page<Contact> findAll(Pageable pageable);
+
+
 }

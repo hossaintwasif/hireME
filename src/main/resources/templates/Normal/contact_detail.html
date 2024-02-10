@@ -14,8 +14,8 @@
 						class="my_profile_picture" th:src="@{'/image/'+${contact.image}}"
 						alt="profile photo" />
 					<h3 class="mt-4">
-						<span th:text="${contact.name}"></span> (<span
-							th:text="${contact.secondname}"></span>)
+						<span th:text="${contact.company}"></span> (<span
+							th:text="${contact.position}"></span>)
 					</h3>
 
 
@@ -35,39 +35,39 @@
 								</div>
 								<div class="row">
 									<div class="col-md-6">
-										<strong>Name:</strong>
+										<strong>Job Role:</strong>
 									</div>
 									<div class="col-md-6">
-										<span th:text="${contact.secondname}"></span>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<strong>Phone.no</strong>
-									</div>
-									<div class="col-md-6">
-										<span th:text="${contact.phone}"></span>
+										<span th:text="${contact.position}"></span>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
-										<strong>Email Id</strong>
+										<strong>Location:</strong>
 									</div>
 									<div class="col-md-6">
-										<span th:text="${contact.email}"></span>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<strong>Work:</strong>
-									</div>
-									<div class="col-md-6">
-										<span th:text="${contact.work}"></span>
+										<span th:text="${contact.location}"></span>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
-										<strong>Description:</strong>
+										<strong>Experience:</strong>
+									</div>
+									<div class="col-md-6">
+										<span th:text="${contact.experience}"></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<strong>Link:</strong>
+									</div>
+									<div class="col-md-6">
+										<span th:text="${contact.link}"></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<strong>Job Description:</strong>
 									</div>
 									<div class="col-md-6">
 										<span th:utext="${contact.description}"></span>

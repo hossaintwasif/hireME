@@ -1,41 +1,67 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="Normal/base::layout(~{::section})">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="Normal/base::layout(~{::section})">
 <head>
-    <meta charset="UTF-8" />
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
-    
+<meta charset="UTF-8" />
+<title>Dashboard</title>
+<link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
-    <section>
-        <h1>This is Dashboard page</h1>
-        
-        <div class="job-details-section">
-            <h2>Job Title</h2>
-            <div class="job-details">
-                <div class="job-description">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquet dui vitae metus fringilla,
-                        in gravida nunc blandit. Suspendisse potenti. Sed vel bibendum tortor.
-                    </p>
-                    <!-- Add more content as needed -->
-                </div>
-            </div>
-            <div class="contact-details">
-                <p>Contact: contact@example.com</p>
-            </div>
-            <div class="like-dislike-container">
-                <button class="like-btn" onclick="toggleLike()">Like</button>
-                <span class="likes-count">0</span>
+	<section>
+		<div class="job-details-section" th:each="contact : ${contacts}">
+		<img src="" class="my_profile_picture" th:src="@{'/image/'+${contact.image}}" alt="profile photo" />
+        <h2 th:text="${contact.company}">Amazon</h2>
+        <div class="job-position">
+            <h3>Position: <span th:text="${contact.position}">Software Development Engineer</span></h3>
+            <h3>Experience: <span th:text="${contact.experience}">2</span>+ years</h3>
+            <h3>Location: <span th:text="${contact.location}">Hyderabad</span></h3>
+        </div>
+        <div class="job-details">
+            <div class="job-description">
+                <p th:utext="${contact.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, inventore. Delectus ad reprehenderit inventore iure nulla sed, earum dolores illum laudantium, at fuga veritatis? Alias amet dolorum, a cupiditate asperiores ea tempore harum expedita, nesciunt tempora eos nostrum corrupti nulla doloribus ipsa quibusdam perferendis id et quae minus? Modi, autem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, inventore. Delectus ad reprehenderit inventore iure nulla sed, earum dolores illum laudantium, at fuga veritatis? Alias amet dolorum, a cupiditate asperiores ea tempore harum expedita, nesciunt tempora eos nostrum corrupti nulla doloribus ipsa quibusdam perferendis id et quae minus? Modi, autem</p>
+                <!-- Add more content as needed -->
             </div>
         </div>
-        
-        <script type="text/javascript">
+        <div class="like-dislike-container">
+            <button class="like-btn" onclick="toggleLike()">Like</button>
+            <span class="likes-count">0</span>
+        </div>
+        <!-- Apply button container -->
+        <div class="apply-btn-container">
+            <!-- Use an anchor tag with an href attribute as a button -->
+            <a th:href="${contact.link}" class="apply-btn" target="_blank">Apply</a>
+        </div>
+    </div>
+    
+    <!-- Pagination -->
+    
+    <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li th:if="${currentpage != 0}" class="page-item">
+      <a th:href="@{'/user/dashbord/' + ${currentpage - 1}}" class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li th:classappend="${currentpage == i-1 ? 'active' : ''}" th:each="i : ${#numbers.sequence(1, totalpage)}" class="page-item">
+      <a th:href="@{'/user/dashbord/' + ${i-1}}" class="page-link" href="#"><span th:text="${i}"></span></a>
+    </li>
+    <li th:if="${currentpage + 1 != totalpage}" class="page-item">
+      <a th:href="@{'/user/dashbord/' + ${currentpage + 1}}" class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+
+
+		<script type="text/javascript">
          $(document).ready(()=>{
             $(".item").removeClass("active");
             $("#home-link").addClass("active");
          });
         </script>
-    </section>
+	</section>
 </body>
 </html>

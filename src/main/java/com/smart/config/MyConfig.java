@@ -42,7 +42,7 @@ public class MyConfig {
             .and().formLogin()
             .loginPage("/signin")
             .loginProcessingUrl("/dologin")
-            .defaultSuccessUrl("/user/dashbord")
+            .defaultSuccessUrl("/user/dashbord/0")
             .failureUrl("/signin?error=true")
             .and().csrf().disable().exceptionHandling()
             .accessDeniedPage("/signin");

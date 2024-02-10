@@ -22,6 +22,13 @@
 <link rel="stylesheet" th:href="@{/css/style.css}" />
 
 <title th:text="${title}">Base HTML</title>
+<style>
+.navbar{
+  position: sticky;
+    top: 0;
+    z-index: 1;
+}
+</style>
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -33,7 +40,7 @@
 	<!-- This is Navbar -->
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="#">Smart Contact Manager</a>
+		<a class="navbar-brand" href="#">HireMe</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -68,9 +75,10 @@
 	<div class="sidebar ">
 
 		<span onclick="toggleSidebar()" class="crossBtn">&times;</span> 
-		<a id="home-link" href="#" class="item active" th:href="@{/user/dashbord}"> <i class="fa-solid fa-house "></i> HOME </a>
-		<a id="contacts-link" href="#" class="item active" th:href="@{/user/show-contact/0}"><i class="fa-solid fa-address-book"></i>VIEW CONTACTS</a>
-		<a id="add-link" href="#" class="item active" th:href="@{/user/addContact}"><i class="fa-solid fa-address-card"></i>ADD CONTACTS</a> 
+		<a id="home-link" href="#" class="item active" th:href="@{/user/dashbord/0}"> <i class="fa-solid fa-house "></i> HOME </a>
+		<a id="contacts-link" href="#" class="item active" th:href="@{/user/show-contact/0}"><i class="fa-solid fa-address-book"></i>View Job Post</a>
+		<a id="add-link" href="#" class="item active" th:href="@{/user/addContact}"><i class="fa-solid fa-address-card"></i>ADD Job Post</a> 
+		<a id="add-donation" href="#" class="item active" th:href="@{/user/donation}"><i class="fas fa-heart"></i>DONATION</a>
 		<a id="profile-link" href="#" class="item active" th:href="@{/user/profile}"><i class="fa-solid fa-user"></i>YOUR PROFILE</a> 
 		<a id="setting-link" href="#" class="item active" th:href="@{/user/setting}"><i class="fa-solid fa-gear"></i>SETTINGS</a> 
 		<a href="#" class="item active" th:href="@{/logout}"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>

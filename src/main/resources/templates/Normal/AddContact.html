@@ -9,7 +9,7 @@
 	<section>
 		<div class="card mr-5 ml-5">
 			<div class="card-body">
-				<h1 class="text-center">Add Contact</h1>
+				<h1 class="text-center">Add Job Post & Earn Money</h1>
 				<div class="container-fluid mt-1">
 					<div class="row">
 						<div class="col-md-10 offset-md-1">
@@ -22,11 +22,11 @@
 									<div class="input-group-prepend" style="width: 50px;">
 										<!-- Adjust the width as needed -->
 										<div class="input-group-text">
-											<i class="fas fa-user-alt"></i>
+											<i class="fas fa-building"></i>
 										</div>
 									</div>
-									<input required type="text" id="firstname" name="name"
-										placeholder="Enter first name" class="form-control" />
+									<input required type="text" id="firstname" name="company"
+										placeholder="Enter Company Name" class="form-control" />
 								</div>
 
 
@@ -35,11 +35,11 @@
 									<div class="input-group-prepend" style="width: 50px;">
 										<!-- Adjust the width as needed -->
 										<div class="input-group-text">
-											<i class="fa fa-plus"></i>
+											<i class="fas fa-briefcase"></i>
 										</div>
 									</div>
-									<input required type="text" id="secondname" name="secondname"
-										placeholder="Enter last name" class="form-control" />
+									<input required type="text" id="secondname" name="position"
+										placeholder="Enter Job Role" class="form-control" />
 								</div>
 
 
@@ -48,12 +48,11 @@
 									<div class="input-group-prepend" style="width: 50px;">
 										<!-- Adjust the width as needed -->
 										<div class="input-group-text">
-											<i class="fa fa-phone"></i>
+											<i class="fas fa-map-marker"></i>
 										</div>
 									</div>
-									<input required  type="number" id="phone"
-										name="phone" placeholder="Enter phone number"
-										class="form-control" />
+									<input required type="text" id="phone" name="location"
+										placeholder="Enter Job Location" class="form-control" />
 								</div>
 
 
@@ -61,10 +60,12 @@
 								<div class="input-group mt-3">
 									<div class="input-group-prepend" style="width: 50px;">
 										<!-- Adjust the width as needed -->
-										<div class="input-group-text">@</div>
+										<div class="input-group-text">
+											<i class="fas fa-calendar"></i>
+										</div>
 									</div>
-									<input required type="email" id="email" name="email"
-										placeholder="Enter email address" class="form-control" />
+									<input required type="number" id="email" name="experience"
+										placeholder="Enter Experince" class="form-control" />
 								</div>
 
 
@@ -73,35 +74,37 @@
 									<div class="input-group-prepend" style="width: 50px;">
 										<!-- Adjust the width as needed -->
 										<div class="input-group-text">
-											<i class="fa fa-briefcase"></i>
+											<i class="fas fa-external-link-alt"></i>
 										</div>
 									</div>
-									<input required type="text" id="work" name="work"
-										placeholder="Enter profession" class="form-control" />
+									<input required type="text" id="work" name="link"
+										placeholder="Enter the job link (Career page / Referal link)"
+										class="form-control" />
 								</div>
 
 
 								<!-- Contact description -->
 								<div class="form-group mt-3">
-									<textarea id="mytextarea" name="description" 
-										class="form-control" cols="10" rows="2"
-										placeholder="Enter description here"></textarea>
+									<textarea id="editor" name="description"
+										class="form-control" cols="15" rows="20"
+										placeholder="Enter Job description here"></textarea>
 								</div>
 
 
 								<!-- Contact Image -->
 								<div class="custom-file">
-									<input type="file" name="imageFile" accept="image/*" />
-
+									<label for="imageFile">Logo of company:</label> 
+									<br />
+									<input type="file" id="imageFile" name="imageFile" accept="image/*" />
 								</div>
+
 
 
 
 
 								<!-- Submit button -->
 								<div class="container text-center">
-									<button type="submit" class="btn btn-outline-primary">Save
-										Contact</button>
+									<button type="submit" class="btn btn-outline-primary">Submit Job Post</button>
 								</div>
 
 
@@ -112,37 +115,25 @@
 			</div>
 		</div>
 
-		<script
-			src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js"
-			referrerpolicy="origin">
-		</script>
-			
-		 <script>
-            tinymce.init({
-                selector: '#mytextarea',
-                setup: function (editor) {
-                    editor.on('change', function () {
-                        // Get the content from the TinyMCE editor
-                        let content = editor.getContent();
+<script src="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js"></script>
 
-                        // Remove <div> and <p> tags
-                        content = content.replace(/<\/?div[^>]*>/g, '');
-                        content = content.replace(/<\/?p[^>]*>/g, '');
 
-                        // Set the modified content back to the TinyMCE editor
-                        editor.setContent(content);
-                    });
-                }
-            });
-        </script>
-        
-        <script type="text/javascript">
+		<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
+
+		<script type="text/javascript">
          $(document).ready(()=>{
             $(".item").removeClass("active");
             $("#add-link").addClass("active");
          });
         </script>
-		
+
 	</section>
 </body>
 </html>

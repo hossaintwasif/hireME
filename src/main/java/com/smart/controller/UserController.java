@@ -8,14 +8,18 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -73,11 +77,25 @@ public class UserController {
 	}
 	
 	// Dashbord controller
-	@RequestMapping("/dashbord")
-	public String dashbord(Model m,Principal principal) {
-		
+	@GetMapping("/dashbord/{page}")
+	public String dashbord(@PathVariable("page") Integer page, Model m,Principal principal) {
+		m.addAttribute("title","Dashbord");
+		Pageable pageable = PageRequest.of(page, 10);
+		Page<Contact> data = this.contactRepository.findAll(pageable);
+		long totalContacts = this.contactRepository.count();
+		// Get the content as a list  use chatgpt
+	    List<Contact> reversedList = new ArrayList<>(data.getContent());
+	    Collections.reverse(reversedList);
+
+	    // Create a new Page with the reversed list
+	    Page<Contact> reversedPage = new PageImpl<>(reversedList, pageable, totalContacts);
+	    
+		m.addAttribute("contacts",reversedPage);
+		m.addAttribute("currentpage",page);
+		m.addAttribute("totalpage",data.getTotalPages());
 		return "Normal/dashbord";
 	}
+	
 	
 	//Add Contact Controller
 	@GetMapping("/addContact")
@@ -135,7 +153,7 @@ public class UserController {
 	//Current page = 0 {page}
 	@GetMapping("/show-contact/{page}")
 	public String showcontact(@PathVariable("page") Integer page ,Model m,Principal principal) {
-		m.addAttribute("title","View Contact");
+		m.addAttribute("title","View Job Posts");
 		String userEmail = principal.getName();
 		User username = this.repository.getUserByUserName(userEmail);
 		
@@ -161,7 +179,7 @@ public class UserController {
 		
 		if(user.getId()==contact.getUser().getId()) {
 			m.addAttribute("contact",contact);
-			m.addAttribute("title",contact.getName());
+			m.addAttribute("title",contact.getCompany());
 		}
 		
 		return "Normal/contact_detail";
@@ -216,7 +234,7 @@ public class UserController {
 	//Update contact in database
 	@PostMapping("/process-update")
 	public String updatehandler(@ModelAttribute Contact contact,@RequestParam("imageFile") MultipartFile imageFile,Model m,RedirectAttributes redirectAttributes,HttpSession session,Principal principal ) {
-		System.out.println("contact name "+contact.getName());
+		System.out.println("contact name "+contact.getCompany());
 		System.out.println("Contact id "+contact.getCid());
 		
 		try {
@@ -295,6 +313,13 @@ public class UserController {
 			return "login";
 		} 
 		
+		
+		//Donation
+		@GetMapping("/donation")
+		public String donation(Model m) {
+			m.addAttribute("title","Donation");
+			return "Normal/donation";
+		}
 		
 		
 }

@@ -24,11 +24,11 @@
 									<div class="input-group-prepend" style="width: 50px;">
 										<!-- Adjust the width as needed -->
 										<div class="input-group-text">
-											<i class="fas fa-user-alt"></i>
+											<i class="fas fa-building"></i>
 										</div>
 									</div>
-									<input th:value="${contact.name}" required type="text" id="firstname" name="name"
-										placeholder="Enter first name" class="form-control" />
+									<input th:value="${contact.company}" required type="text" id="firstname" name="company"
+										placeholder="Enter Company name" class="form-control" />
 								</div>
 
 
@@ -37,11 +37,11 @@
 									<div class="input-group-prepend" style="width: 50px;">
 										<!-- Adjust the width as needed -->
 										<div class="input-group-text">
-											<i class="fa fa-plus"></i>
+											<i class="fas fa-briefcase"></i>
 										</div>
 									</div>
-									<input th:value="${contact.secondname}" required type="text" id="secondname" name="secondname"
-										placeholder="Enter last name" class="form-control" />
+									<input th:value="${contact.position}" required type="text" id="secondname" name="position"
+										placeholder="Enter Position" class="form-control" />
 								</div>
 
 
@@ -50,11 +50,11 @@
 									<div class="input-group-prepend" style="width: 50px;">
 										<!-- Adjust the width as needed -->
 										<div class="input-group-text">
-											<i class="fa fa-phone"></i>
+											<i class="fas fa-map-marker"></i>
 										</div>
 									</div>
-									<input th:value="${contact.phone}" required type="number" id="phone" name="phone"
-										placeholder="Enter phone number" class="form-control" />
+									<input th:value="${contact.location}" required type="text" id="phone" name="location"
+										placeholder="Enter Job Location" class="form-control" />
 								</div>
 
 
@@ -62,10 +62,10 @@
 								<div class="input-group mt-3">
 									<div class="input-group-prepend" style="width: 50px;">
 										<!-- Adjust the width as needed -->
-										<div class="input-group-text">@</div>
+										<div class="input-group-text"><i class="fas fa-calendar"></i></div>
 									</div>
-									<input th:value="${contact.email}" required type="email" id="email" name="email"
-										placeholder="Enter email address" class="form-control" />
+									<input th:value="${contact.experience}" required type="number" id="email" name="experience"
+										placeholder="Enter experience " class="form-control" />
 								</div>
 
 
@@ -74,19 +74,19 @@
 									<div class="input-group-prepend" style="width: 50px;">
 										<!-- Adjust the width as needed -->
 										<div class="input-group-text">
-											<i class="fa fa-briefcase"></i>
+											<i class="fas fa-external-link-alt"></i>
 										</div>
 									</div>
-									<input th:value="${contact.work}" required type="text" id="work" name="work"
-										placeholder="Enter profession" class="form-control" />
+									<input th:value="${contact.link}" required type="text" id="work" name="link"
+										placeholder="Enter Job Link" class="form-control" />
 								</div>
 
 
 								<!-- Contact description -->
 								<div class="form-group mt-3">
-									<textarea th:utext="${contact.description}" id="mytextarea" name="description"
+									<textarea th:utext="${contact.description}" id="editor" name="description"
 										class="form-control" cols="10" rows="2"
-										placeholder="Enter description here"></textarea>
+										placeholder="Enter Job Description"></textarea>
 								</div>
 
 
@@ -107,7 +107,7 @@
 								<!-- Submit button -->
 								<div class="container text-center">
 									<button type="submit" class="btn btn-outline-primary">Save
-										Contact</button>
+										Job Post</button>
 								</div>
 
 
@@ -118,29 +118,16 @@
 			</div>
 		</div>
 		
-		<script
-			src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js"
-			referrerpolicy="origin">
-		</script>
-			
-		 <script>
-            tinymce.init({
-                selector: '#mytextarea',
-                setup: function (editor) {
-                    editor.on('change', function () {
-                        // Get the content from the TinyMCE editor
-                        let content = editor.getContent();
+		<script src="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js"></script>
 
-                        // Remove <div> and <p> tags
-                        content = content.replace(/<\/?div[^>]*>/g, '');
-                        content = content.replace(/<\/?p[^>]*>/g, '');
 
-                        // Set the modified content back to the TinyMCE editor
-                        editor.setContent(content);
-                    });
-                }
-            });
-        </script>
+		<script>
+         ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+     </script>
         
         <div class="container">
 			  <h1 class="text-center p-3 bg-danger text-white" th:unless="${contact}">OOPS!!!...You don't have permission to view this contact</h1>

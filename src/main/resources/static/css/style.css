@@ -9,7 +9,7 @@ body {
 .banner {
     width: 100%;
     height: 93vh;
-    background: linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .8)), url(../image/alia2.jpg);
+    background: linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .8)), url(../image/homepage.jpg);
     background-size: cover;
     background-position: center;
     color: white;
@@ -108,40 +108,74 @@ body {
 /* Integrated styles for job details section */
 
 .job-details-section {
-    width: 1300px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-}
+            width: 80%;
+            max-width: 1300px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 35px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid black;
+        }
 
-.job-details {
-    height: 150px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-}
+        h2 {
+            text-align: center;
+        }
 
-.contact-details {
-    margin-bottom: 10px;
-}
+        .job-position h3 span {
+            font-weight: normal;
+        }
 
-.like-dislike-container {
-    display: flex;
-    align-items: center;
-}
+        .job-details {
+            height: 150px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
 
-.like-btn {
-    padding: 5px 10px;
-    margin-right: 10px;
-    cursor: pointer;
-}
+        .contact-details {
+            margin-bottom: 10px;
+        }
 
-.likes-count {
-    font-weight: bold;
-}
+        .like-dislike-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .like-btn {
+            padding: 5px 10px;
+            margin-right: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            z-index: 2;
+        }
+
+        .likes-count {
+            font-weight: bold;
+        }
+
+        /* Apply button styling */
+        .apply-btn-container {
+            text-align: center;  /* Center the button */
+            margin-top: 20px;    /* Adjust top margin */
+            bottom: 45px;
+           position: relative;
+        }
+        .apply-btn {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Additional styling for responsive design */
+        @media (max-width: 500px) {
+            .job-details-section {
+                width: 90%;
+            }
+        }
 
 /* Rest of your existing styles for sidebar and content */
 
@@ -169,6 +203,7 @@ body {
     position: fixed;
     padding-top: 45px;
     z-index: 99999999999999999999999999999;
+    
 }
 
 .sidebar a{
@@ -260,4 +295,100 @@ body {
 	border: 1px solid gray;
 	display: none;
 }
+.yellow-icon {
+    
+    color: black;
+}
 
+
+
+/*Donation Css*/
+.Section_top {
+    width: 100%;
+    height: 85vh;
+    overflow: hidden;
+    position: relative;
+    background-image: url(../image/box1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    justify-content: center;
+    animation: change 30s infinite linear;
+    
+}
+.speech{
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    size: 10%;
+    color: whitesmoke;
+}
+.speech h1 {
+	text-transform: uppercase;
+    color: #fff;
+    font-size: 4rem;
+    letter-spacing: 0.7rem;
+    margin-bottom: 2rem;
+}
+.speech p {
+    line-height: 1.6;
+    font: 0.8rem/1.6 Arial, sans-serif; /* Shorthand for font-size and line-height */
+    color: #fff;
+    margin: 0.5rem 0 1rem; /* Shorthand for margin-top, margin-bottom */
+}
+.speech, h1,span {
+     color: #111;
+}
+
+#span {
+    color: #C3D900;
+}
+
+.donate-btn {
+    margin: 8px;
+    height: 2.1rem;
+    width: 7rem;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    color: rgb(62, 6, 123);
+    transition: 0.4s;
+    background: #d5f365;
+    margin-top: 1rem;
+}
+
+button:hover {
+    box-shadow: 7px 5px 56px -14px #C3D900;
+}
+
+.button:active {
+    transform: scale(0.97);
+    box-shadow: 7px 5px 56px -10px #C3D900;
+}
+
+@keyframes change {
+    0% {
+        background-image: url(../image/box2.jpg);
+    }
+    20% {
+        background-image: url(../image/box3.jpg);
+    }
+    40% {
+        background-image: url(../image/box4.jpg);
+    }
+    60% {
+        background-image: url(../image/box5.jpg);
+    }
+    80% {
+        background-image: url(../image/box6.jpg);
+    }
+    100% {
+        background-image: url(../image/box7.jpg);
+    }
+}

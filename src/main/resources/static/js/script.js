@@ -10,20 +10,30 @@ const toggleSidebar = () => {
     }
 };
 
-let likesCount = 0;
-let liked = false;
 
-function toggleLike() {
+
+
+function toggleLike(button) {
+    const likesCount = parseInt(button.getAttribute('data-likesCount'));
+    let liked = button.getAttribute('data-liked') === 'true';
+
     liked = !liked;
 
     if (liked) {
-        likesCount++;
+        button.setAttribute('data-likesCount', likesCount + 1);
     } else {
-        likesCount--;
+        button.setAttribute('data-likesCount', likesCount - 1);
     }
 
-    document.querySelector('.likes-count').textContent = likesCount;
+    button.setAttribute('data-liked', liked);
+    
+    // Update the displayed likes count
+    button.nextElementSibling.textContent = button.getAttribute('data-likesCount');
 }
+
+
+
+
 
 const search = () => {
     console.log("searching..");
@@ -42,7 +52,7 @@ const search = () => {
 
             let text = `<div class='list-group'>`;
             data.forEach((contact) => { // Corrected method name: forEach
-                text += `<a  href='/user/${contact.cid}/contact' class='list-group-item list-group-item-action'> ${contact.name} </a>`;
+                text += `<a  href='/user/${contact.cid}/contact' class='list-group-item list-group-item-action'> ${contact.company} </a>`;
             });
             text += `</div>`;
             $(".search-result").html(text);

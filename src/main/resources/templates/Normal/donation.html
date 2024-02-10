@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="Normal/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8" />
+    <title>Donation</title>
+    <style>
+         body,html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    font-family: sans-serif;
+     }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="Section_top">
+        <div class="speech">
+            <p><h1>Be a <span>beacon of <span id="span">hope</span></span></h1>
+            <p><b>
+                Your contribution today has the power to nourish hungry children and uplift the lives of orphaned souls. Join us in our battle against hunger and create a lasting impact. Together, let's nourish dreams and fill hearts with joy.</b></p></p>
+            <button class="donate-btn"><strong>DONATE</strong></button>
+        </div>
+        <script>
+            let slideIndex = 0;
+            function showSlides() {
+                let i;
+                const slides = document.getElementsByClassName("mySlides");
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) {
+                    slideIndex = 1;
+                }
+                slides[slideIndex - 1].style.display = "block";
+                setTimeout(showSlides, 10000); 
+            }
+            window.onload = function () {
+                showSlides();
+            };
+            showSlides();
+        </script>
+    </div> 
+
+    </section>
+</body>
+</html>
