@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	th:fragment="layout(content)">
-	
-	
+
+
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -23,18 +23,23 @@
 
 <title th:text="${title}">Base HTML</title>
 <style>
-.navbar{
-  position: sticky;
-    top: 0;
-    z-index: 1;
+.navbar {
+	position: sticky;
+	top: 0;
+	z-index: 1;
 }
 </style>
 
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS 
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-		crossorigin="anonymous"></script>
-		
+		crossorigin="anonymous"></script> -->
+
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+	crossorigin="anonymous"></script>
+
 </head>
 <body>
 	<!-- This is Navbar -->
@@ -74,14 +79,23 @@
 
 	<div class="sidebar ">
 
-		<span onclick="toggleSidebar()" class="crossBtn">&times;</span> 
-		<a id="home-link" href="#" class="item active" th:href="@{/user/dashbord/0}"> <i class="fa-solid fa-house "></i> HOME </a>
-		<a id="contacts-link" href="#" class="item active" th:href="@{/user/show-contact/0}"><i class="fa-solid fa-address-book"></i>View Job Post</a>
-		<a id="add-link" href="#" class="item active" th:href="@{/user/addContact}"><i class="fa-solid fa-address-card"></i>ADD Job Post</a> 
-		<a id="add-donation" href="#" class="item active" th:href="@{/user/donation}"><i class="fas fa-heart"></i>DONATION</a>
-		<a id="profile-link" href="#" class="item active" th:href="@{/user/profile}"><i class="fa-solid fa-user"></i>YOUR PROFILE</a> 
-		<a id="setting-link" href="#" class="item active" th:href="@{/user/setting}"><i class="fa-solid fa-gear"></i>SETTINGS</a> 
-		<a href="#" class="item active" th:href="@{/logout}"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+		<span onclick="toggleSidebar()" class="crossBtn">&times;</span> <a
+			id="home-link" href="#" class="item active"
+			th:href="@{/user/dashbord/0}"> <i class="fa-solid fa-house "></i>
+			HOME
+		</a> <a id="contacts-link" href="#" class="item active"
+			th:href="@{/user/show-contact/0}"><i
+			class="fa-solid fa-address-book"></i>View Job Post</a> <a id="add-link"
+			href="#" class="item active" th:href="@{/user/addContact}"><i
+			class="fa-solid fa-address-card"></i>ADD Job Post</a> <a
+			id="add-donation" href="#" class="item active"
+			th:href="@{/user/donation}"><i class="fas fa-heart"></i>DONATION</a>
+		<a id="profile-link" href="#" class="item active"
+			th:href="@{/user/profile}"><i class="fa-solid fa-user"></i>YOUR
+			PROFILE</a> <a id="setting-link" href="#" class="item active"
+			th:href="@{/user/setting}"><i class="fa-solid fa-gear"></i>SETTINGS</a>
+		<a href="#" class="item active" th:href="@{/logout}"><i
+			class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
 		<div class="divider"></div>
 	</div>
 
@@ -110,7 +124,7 @@
 
 
 	<!-- Optional JavaScript -->
-	
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
 		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
@@ -120,9 +134,10 @@
 		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 		crossorigin="anonymous"></script>
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<script>
+	<script>
   function deleteContact(cid) {
     swal({
       title: "Are you sure?",
@@ -141,7 +156,8 @@
   }
 </script>
 
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 	<script th:src="@{/js/script.js}"></script>
 </body>
 </html>

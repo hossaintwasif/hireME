@@ -28,6 +28,12 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.razorpay</groupId>
+             <artifactId>razorpay-java</artifactId>
+             <version>1.4.4</version> 
+        </dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -39,7 +45,7 @@
 			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
 		</dependency>
 
-         <!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+		<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
 		<dependency>
 			<groupId>com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
@@ -90,8 +96,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		
-		
+
 	</dependencies>
 
 	<build>

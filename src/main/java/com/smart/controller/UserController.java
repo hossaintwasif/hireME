@@ -13,6 +13,18 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.*;
+import com.razorpay.*;
+import com.razorpay.RazorpayClient;
+import com.razorpay.RazorpayException;
+import com.razorpay.Order;
+import com.razorpay.Payment;
+//import com.razorpay.PaymentOrderRequest;
+import com.razorpay.Refund;
+import com.razorpay.RazorpayClient;
+import com.razorpay.RazorpayException;
+import com.razorpay.Utils;
+
 
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
@@ -23,6 +35,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
@@ -34,15 +47,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.smart.dao.ContactRepository;
+import com.smart.dao.MyOrderRepository;
 import com.smart.dao.UserRepository;
 import com.smart.entities.Contact;
+import com.smart.entities.MyOrder;
 import com.smart.entities.User;
 import com.smart.helper.Message;
 
@@ -65,6 +82,9 @@ public class UserController {
 	
 	@Autowired
 	private UserRepository repository;
+	
+	@Autowired
+	private MyOrderRepository myOrderRepository;
 	
 	//Method for adding common data eg: User name
 	@ModelAttribute
@@ -314,11 +334,59 @@ public class UserController {
 		} 
 		
 		
+		
+		
 		//Donation
 		@GetMapping("/donation")
 		public String donation(Model m) {
 			m.addAttribute("title","Donation");
 			return "Normal/donation";
+		}
+		
+		//Payment order request handler
+		@PostMapping("/create_order")
+		@ResponseBody
+		public String createOrder(@RequestBody Map<String, Object> data,Principal principal) throws Exception {
+			System.out.println(data);
+			int amount=Integer.parseInt(data.get("amount").toString());
+			var client=new RazorpayClient("rzp_test_ditYT5Sj8tEIwg", "6Erfh2TdIauWsCdKWu688s7Y");
+			
+			JSONObject options = new JSONObject();
+		    options.put("amount", amount*100); // Note: The amount should be in paise.
+		    options.put("currency", "INR");
+		    options.put("receipt", "txn_123456");
+		    Order order = client.orders.create(options);
+		    System.out.println(order);
+		    
+		    //Save order in database
+		    MyOrder myOrder=new MyOrder();
+		    myOrder.setAmount(order.get("amount").toString());
+			myOrder.setOrderID(order.get("id"));
+			myOrder.setPaymentID(null);
+			myOrder.setStatus("created");
+			myOrder.setUser(this.repository.getUserByUserName(principal.getName()));
+			myOrder.setReceipt(order.get("receipt"));
+			
+			this.myOrderRepository.save(myOrder);
+		    
+		    return order.toString();
+		}
+		
+		
+		@PostMapping("/update_order")
+		public ResponseEntity<?> updateOrder(@RequestBody Map<String, Object> data){
+			String orderID = (data.get("orderid") != null) ? data.get("orderid").toString() : null;
+		    System.out.println("Received orderID: " + orderID);
+		    
+			MyOrder myOrder = this.myOrderRepository.findByOrderID(orderID);
+			System.out.println("PID "+data.get("paymentid").toString());
+			System.out.println(data.get("status").toString());
+			myOrder.setPaymentID(data.get("paymentid").toString());
+			myOrder.setStatus(data.get("status").toString());
+			this.myOrderRepository.save(myOrder);
+			
+			System.out.println(data);
+			return ResponseEntity.ok(Map.of("msg","updated"));
 		}
 		
 		
